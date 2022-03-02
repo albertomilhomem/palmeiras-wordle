@@ -1,0 +1,24 @@
+import { Cell } from './Cell'
+import { solutionLength } from '../../lib/words'
+
+type Props = {
+  guess: string
+  className: string
+}
+
+export const CurrentRow = ({ guess, className }: Props) => {
+  const splitGuess = guess.split('')
+  const emptyCells = Array.from(Array(solutionLength - splitGuess.length))
+  const classes = `flex justify-center mb-1 ${className}`
+
+  return (
+    <div className={classes}>
+      {splitGuess.map((letter, i) => (
+        <Cell key={i} value={letter} />
+      ))}
+      {emptyCells.map((_, i) => (
+        <Cell key={i} />
+      ))}
+    </div>
+  )
+}
